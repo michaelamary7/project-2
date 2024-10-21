@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const Calendar = () => {
   const [holidays, setHolidays] = useState([]);
@@ -6,9 +7,8 @@ const Calendar = () => {
   useEffect(() => {
     const fetchHolidays = async () => {
       try {
-        const response = await fetch('/api/holidays?country=US&year=2024');
-        const data = await response.json();
-        setHolidays(data.response.holidays);
+        const response = await axios.get('/api/holidays?country=US&year=2024');
+        setHolidays(response.data.response.holidays);
       } catch (error) {
         console.error('Error fetching holidays:', error);
       }
