@@ -1,24 +1,24 @@
-const { Event } = require('../models');
+import { Event } from '../models';
 
-exports.getEvents = async (req, res) => {
+export async function getEvents(req, res) {
   try {
     const events = await Event.findAll({ where: { userId: req.user.id } });
     res.json(events);
   } catch (error) {
     res.status(500).json({ message: 'Error retrieving events', error });
   }
-};
+}
 
-exports.addEvent = async (req, res) => {
+export async function addEvent(req, res) {
   try {
     const newEvent = await Event.create({ ...req.body, userId: req.user.id });
     res.status(201).json(newEvent);
   } catch (error) {
     res.status(500).json({ message: 'Error adding event', error });
   }
-};
+}
 
-exports.updateEvent = async (req, res) => {
+export async function updateEvent(req, res) {
   try {
     const [updated] = await Event.update(req.body, {
       where: { id: req.params.id, userId: req.user.id }
@@ -32,9 +32,9 @@ exports.updateEvent = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: 'Error updating event', error });
   }
-};
+}
 
-exports.deleteEvent = async (req, res) => {
+export async function deleteEvent(req, res) {
   try {
     const deleted = await Event.destroy({
       where: { id: req.params.id, userId: req.user.id }
@@ -47,4 +47,32 @@ exports.deleteEvent = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: 'Error deleting event', error });
   }
-};
+}
+
+
+import { createEvent as _createEvent, getUserEvents as _getUserEvents } from '../services/eventService';
+
+class EventController {
+  async createEvent(req, res) {
+    try {
+      const { userId } = req.user; // Assuming you have authentication middleware
+      const event = await _createEvent(req.body, userId, req.body.categoryIds);
+      res.status(201).json(event);
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
+  }
+
+  async getUserEvents(req, res) {
+    try {
+      const { userId } = req.user;
+      const { startDate, endDate } = req.query;
+      const events = await _getUserEvents(userId, startDate, endDate);
+      res.json(events);
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
+  }
+}
+
+export default new EventController();

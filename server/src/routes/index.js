@@ -1,11 +1,11 @@
-const express = require('express');
-const router = express.Router();
-const { authenticateToken } = require('../middleware/auth');
+import { Router } from 'express';
+const router = Router();
+import { authenticateToken } from '../middleware/auth';
 
-const userRoutes = require('./userRoutes');
-const eventRoutes = require('./eventRoutes');
+import userRoutes from './userRoutes';
+import eventRoutes from './eventRoutes';
 
 router.use('/users', userRoutes);
 router.use('/events', authenticateToken, eventRoutes);
 
-module.exports = router;
+export default router;
