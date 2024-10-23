@@ -1,10 +1,11 @@
 import React from 'react'
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import viteLogo from '../public/vite.svg'
 import './App.css'
 import EventCalendar from './components/eventcalendar.jsx'
 import './index.css'
+import './main.jsx'
 import Calendar from './components/calendar.jsx'
 
 
