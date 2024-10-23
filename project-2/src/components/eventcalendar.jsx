@@ -29,18 +29,23 @@ const EventCalendar = () => {
 
   return (
     <div className="calendar-container">
-      <h2>Event Calendar</h2>
-      <Calendar
-        onChange={setDate}
-        value={date}
-        tileContent={tileContent} // Display marker for event dates
-      />
+      <h2 className="react-calendar_title">Event Calendar</h2>
       
+      {/* Add a custom class to the calendar */}
+      <div className="custom-calendar-body">
+        <Calendar
+          onChange={setDate}
+          value={date}
+          tileContent={tileContent} // Display marker for event dates
+          className="my-custom-calendar" // Custom class for additional styling
+        />
+      </div>
+
       <div className="events-list">
         <h3>Events on {date.toDateString()}</h3>
         <ul>
           {events
-            .filter(event => event.date.iso === date.toISOString().split('T')[0]) // Filter events for selected date
+            .filter(event => event.date.iso === date.toISOString().split('T')[0])
             .map(event => (
               <li key={event.name}>{event.name}</li>
             ))}
