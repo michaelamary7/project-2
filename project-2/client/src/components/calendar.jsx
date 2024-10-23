@@ -8,7 +8,7 @@ const Calendar = () => {
   useEffect(() => {
     const fetchHolidays = async () => {
       try {
-        const response = await axios.get('/api/holidays?country=US&year=2024');
+        const response = await axios.get('http://localhost:5173/api/holidays');
         setHolidays(response.data.response.holidays);
       } catch (error) {
         console.error('Error fetching holidays:', error);

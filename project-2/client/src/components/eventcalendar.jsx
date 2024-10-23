@@ -10,16 +10,32 @@ const EventCalendar = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await fetch('/api/holidays?country=US&year=2024'); // Replace with your API call
+        const response = await fetch('http://localhost:5173/api/holidays'); // Replace with your API call
+  
+        // Check if response is okay (status 200)
+        if (!response.ok) {
+          const errorText = await response.text(); // Get error response for debugging
+          console.error('Error fetching events:', errorText);
+          throw new Error('Network response was not ok');
+        }
+  
         const data = await response.json();
-        setEvents(data.response.holidays); // Adjust based on API response structure
+  
+        // Check the structure of the response
+        if (data.response && data.response.holidays) {
+          setEvents(data.response.holidays);
+        } else {
+          console.error('Unexpected response structure:', data);
+        }
+  
       } catch (error) {
         console.error('Error fetching events:', error);
       }
     };
-
+  
     fetchEvents();
   }, []);
+  
 
   const tileContent = ({ date }) => {
     const dateString = date.toISOString().split('T')[0]; // Format date as YYYY-MM-DD
