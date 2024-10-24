@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import getMoonPhase from '../routes/api/moonPhase';
+import getMoonPhase from '../api/moonPhase';
 
 const MoonPhaseDisplay = () => {
   const [moonPhase, setMoonPhase] = useState(null);

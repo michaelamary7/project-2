@@ -1,4 +1,4 @@
-const { Event, Category, Reminder, sequelize } = require('../models');
+const { Event, Category, Reminder, sequelize } = require('../models').default;
 const { Op } = require('sequelize');
 
 class EventService {

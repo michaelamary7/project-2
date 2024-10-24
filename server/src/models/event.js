@@ -1,3 +1,6 @@
+import { Model } from 'sequelize';
+
+
 
 const { Model } = require('sequelize');
 
