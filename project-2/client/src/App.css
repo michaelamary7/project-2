@@ -1,8 +1,111 @@
+ Grace's-Branch
+/* General Styles */
+
+ Christian
 #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+Grace's-Branch
+  background-color: #282c34;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: #282c34;
+  color: #ffffff;
+}
+
+header, footer {
+  background-color: #282c34;
+  padding: 20px;
+  color: rgb(168, 168, 168);
+}
+
+.app-container {
+  text-align: center;
+}
+
+/* Calendar Container */
+.calendar-container {
+  margin: 20px auto;
+  width: 90vw;
+  height: 80vh;
+  background-color: #282c34;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .calendar-container {
+    width: 95vw;
+    height: 90vh;
+  }
+}
+
+/* Custom Calendar Styles */
+.react-calendar {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.my-custom-calendar {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+.custom-calendar-body {
+  flex-grow: 1;
+  display: grid;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Tile Styles */
+.react-calendar__tile {
+  padding: 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.react-calendar__tile:hover {
+  background-color: #f0f0f5;
+}
+
+.react-calendar__tile--active {
+  background-color: #4caf50; /* Custom selected date color */
+  color: white;
+}
+
+/* Weekdays */
+.react-calendar__month-view__weekdays {
+  color: #555;
+  font-weight: bold;
+  display: grid;
+  justify-content: space-around;
+  background-color: #f0f0f5;
+  padding: 10px 0;
+}
+
+/* Event List */
+.events-list {
+  margin-top: 20px;
+  width: 100%;
+  color: #ffffff;
+}
+
+.event-marker {
+  color: red;
+=======
 }
 
 .logo {
@@ -39,4 +142,5 @@
 
 .read-the-docs {
   color: #888;
+Christian
 }

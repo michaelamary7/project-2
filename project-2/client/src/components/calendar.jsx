@@ -8,7 +8,11 @@ const Calendar = () => {
   useEffect(() => {
     const fetchHolidays = async () => {
       try {
+Grace's-Branch
+        const response = await axios.get('http://localhost:5173/api/holidays');
+
         const response = await axios.get('/api/holidays?country=US&year=2024');
+Christian
         setHolidays(response.data.response.holidays);
       } catch (error) {
         console.error('Error fetching holidays:', error);
@@ -30,4 +34,8 @@ const Calendar = () => {
   );
 };
 
+ Grace's-Branch
 export default Calendar;
+
+export default Calendar;
+ Christian
