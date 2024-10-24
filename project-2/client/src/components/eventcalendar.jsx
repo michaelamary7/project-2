@@ -10,7 +10,7 @@ const EventCalendar = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await fetch('http://localhost:5432/api/holidays'); // Ensure the correct API call
+        const response = await fetch('http://localhost:5173/api/holidays'); // Replace with your API call
   
         // Check if response is okay (status 200)
         if (!response.ok) {
@@ -36,14 +36,25 @@ const EventCalendar = () => {
           console.error('Response is not JSON:', contentType, textResponse);
         }
   
+
+        const response = await fetch('/api/holidays?country=US&year=2024'); // Replace with your API call
+        const data = await response.json();
+        setEvents(data.response.holidays); // Adjust based on API response structure
+ Christian
       } catch (error) {
         console.error('Error fetching events:', error);
       }
     };
+ Grace's-Branch
   
     fetchEvents();
   }, []);
   
+
+
+    fetchEvents();
+  }, []);
+ Christian
 
   const tileContent = ({ date }) => {
     const dateString = date.toISOString().split('T')[0]; // Format date as YYYY-MM-DD
@@ -53,6 +64,7 @@ const EventCalendar = () => {
 
   return (
     <div className="calendar-container">
+ Grace's-Branch
       <h2 className="react-calendar_title">Event Calendar</h2>
       
       {/* Add a custom class to the calendar */}
@@ -65,11 +77,24 @@ const EventCalendar = () => {
         />
       </div>
 
+
+      <h2>Event Calendar</h2>
+      <Calendar
+        onChange={setDate}
+        value={date}
+        tileContent={tileContent} // Display marker for event dates
+      />
+      
+ Christian
       <div className="events-list">
         <h3>Events on {date.toDateString()}</h3>
         <ul>
           {events
+ Grace's-Branch
             .filter(event => event.date.iso === date.toISOString().split('T')[0])
+
+            .filter(event => event.date.iso === date.toISOString().split('T')[0]) // Filter events for selected date
+ Christian
             .map(event => (
               <li key={event.name}>{event.name}</li>
             ))}
@@ -79,4 +104,8 @@ const EventCalendar = () => {
   );
 };
 
+ Grace's-Branch
 export default EventCalendar;
+
+export default EventCalendar;
+ Christian
