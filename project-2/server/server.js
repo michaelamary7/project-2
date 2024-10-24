@@ -47,7 +47,7 @@ router.get('/api/holidays', async (req, res) => {
 
   try {
     // Make the API call to Calendarific
-    const response = await axios.get('https://calendarific.com/api/v2/holidays', {
+    const response = await axios.get('http://localhost:5173/api/holidays', {
       params: {
         api_key: process.env.CALENDARIFIC_API_KEY, // Use environment variable for the API key
         country,

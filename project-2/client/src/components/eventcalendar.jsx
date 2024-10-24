@@ -10,7 +10,7 @@ const EventCalendar = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await fetch('http://localhost:5173/api/holidays'); // Replace with your API call
+        const response = await fetch('http://localhost:5432/api/holidays'); // Ensure the correct API call
   
         // Check if response is okay (status 200)
         if (!response.ok) {
@@ -19,13 +19,21 @@ const EventCalendar = () => {
           throw new Error('Network response was not ok');
         }
   
-        const data = await response.json();
+        // Check if response is JSON
+        const contentType = response.headers.get('content-type');
+        if (contentType && contentType.includes('application/json')) {
+          const data = await response.json(); // Parse JSON
   
-        // Check the structure of the response
-        if (data.response && data.response.holidays) {
-          setEvents(data.response.holidays);
+          // Check the structure of the response
+          if (data.response && data.response.holidays) {
+            setEvents(data.response.holidays);
+          } else {
+            console.error('Unexpected response structure:', data);
+          }
         } else {
-          console.error('Unexpected response structure:', data);
+          // If not JSON, log the content type and the response body for debugging
+          const textResponse = await response.text();
+          console.error('Response is not JSON:', contentType, textResponse);
         }
   
       } catch (error) {
