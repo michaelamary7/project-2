@@ -1,4 +1,3 @@
- Grace's-Branch
 require('dotenv').config();
 import express, { json } from 'express';
 import cors from 'cors';
@@ -38,8 +37,6 @@ app.use('/api/categories', categoryRoutes);
 
 export default app;
 
-
- Christian
 const express = require('express');
 const axios = require('axios');
 const router = express.Router();
@@ -50,7 +47,7 @@ router.get('/api/holidays', async (req, res) => {
 
   try {
     // Make the API call to Calendarific
-    const response = await axios.get('http://localhost:5173/api/holidays', {
+    const response = await axios.get('http://localhost:5432/api/holidays', {
       params: {
         api_key: process.env.CALENDARIFIC_API_KEY, // Use environment variable for the API key
         country,
@@ -66,8 +63,4 @@ router.get('/api/holidays', async (req, res) => {
   }
 });
 
- Grace's-Branch
 module.exports = router;
-
-module.exports = router;
- Christian
